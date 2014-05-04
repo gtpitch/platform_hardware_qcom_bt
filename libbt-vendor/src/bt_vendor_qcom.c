@@ -933,6 +933,7 @@ userial_open:
                                      ignore_boot_prop = TRUE;
                                 }
 #endif //READ_BT_ADDR_FROM_PROP
+#ifdef BT_NV_SUPPORT
                                     /* Always read BD address from NV file */
                                 if(ignore_boot_prop && !bt_vendor_nv_read(1, q.bdaddr))
                                 {
@@ -940,6 +941,7 @@ userial_open:
                                    ALOGI("Failed to read BD address. Use the one from bluedroid stack/ftm");
                                 }
                                 if(rome_soc_init(fd, (char*)q.bdaddr)<0) {
+#endif
                                     retval = -1;
                                 } else {
                                     ALOGV("rome_soc_init is completed");
